@@ -1,6 +1,6 @@
 ![](preview.png)
 
-![status](https://github.com/eaglePB2/school_project/actions/workflows/static.yml/badge.svg)
+![status](https://github.com/eaglePB2/eaglepb2.github.io/actions/workflows/jekyll-gh-pages.yml/badge.svg)
 <hr>
 
 ### Hosted by:

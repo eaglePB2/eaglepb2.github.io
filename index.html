@@ -137,7 +137,7 @@
     <script type="text/javascript" src="js/timeout.js"></script>
     <script type="text/javascript" src="js/backgroundAPI.js"></script>
     <script type="text/javascript" src="js/norightclick.js"></script>
-    <!-- <script type="text/javascript" src="js/moonphases.js"></script> -->
+    <script type="text/javascript" src="js/moonphases.js"></script>
     <script type="text/javascript" src="js/quotes.js"></script>
     <script type="text/javascript" src="js/keyboardASCII.js"></script>
     <script type="text/javascript" src="js/glitchtext.js"></script>
@@ -166,6 +166,7 @@
         window.addEventListener('DOMContentLoaded', () => {
             const audio = new Audio('assets/audio/sound.mp3');
             audio.volume = 0.5;
+            audio.loop = true;
             audio.play().catch(err => {
                 console.log("浏览器拦截了自动播放，等待用户首次交互后触发", err);
                 // 可选：绑定一次任意点击后播放

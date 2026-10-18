@@ -1,18 +1,20 @@
 var glitchTexts = [];
 var possibleChar = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789/;\[]=-~!@#$%^&*()+{}:?><€¡¥×«»¶¿çµñ©æáßðøöóíúüþéåä";
-var glitchStrength = 20; // how many characters should be coverted PER GLITCH (in percentage)
-var glitchSpeed = 10; // how many times per second should the effect be applied
-var glitchDuration = 500; // how long the effect should last (in miliseconds)
-var glitchLeave = false; // if the effect should last when you dont hover the item anymore
+var glitchStrength = 20; 
+var glitchSpeed = 10; 
+var glitchDuration = 500; 
+var glitchLeave = false; 
 var timeouts = [];
 
-$('.glitch-item').each(function(index, el) {
-  var txt = $('a', this).text().trim();
+// 适配主页的 .top_nav 导航按钮
+$('.top_nav').each(function(index, el) {
+  var txt = $(this).text().trim();
   glitchTexts.push(txt);
 });
 
-$('.glitch-item').hover(function() {
-  var originalText = glitchTexts[$(this).index() - 1];
+$('.top_nav').hover(function() {
+  var index = $('.top_nav').index(this);
+  var originalText = glitchTexts[index];
   var times = glitchSpeed * (glitchDuration / 1000);
   var charArr = $(this).text().trim().split("");
   var strength = Math.ceil(charArr.length / (100 / glitchStrength));
@@ -24,7 +26,7 @@ $('.glitch-item').hover(function() {
         var indexOfChar = Math.floor(Math.random() * charArr.length);
         charArr[indexOfChar] = randChar;
         var newText = charArr.join("");
-        $('a', this).text(newText);
+        $(this).text(newText);
       }
     }.bind(this), (i * speed)));
   };
@@ -34,6 +36,7 @@ $('.glitch-item').hover(function() {
       clearTimeout(el);
       delete timeouts[i];
     });
-    $('a', this).text(glitchTexts[$(this).index() - 1]);
+    var index = $('.top_nav').index(this);
+    $(this).text(glitchTexts[index]);
   }
 });

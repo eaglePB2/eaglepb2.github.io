@@ -4,7 +4,7 @@
 <head>
     <title> 鷹的主頁 </title>
 
-    <!-- General Ads -->
+    <!-- General Meta -->
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -13,91 +13,74 @@
     <meta name="robots" content="nofollow">
     <meta name="rating" content="general">
 
-    <!-- Open Graph Ads -->
+    <!-- Open Graph Meta -->
     <meta property="og:type" content="website">
     <meta property="og:title" content="EaglePB2's Website">
-    <meta property="og:url" content="https://eaglepb2.github.io/mojang_list/">
+    <meta property="og:url" content="https://eaglepb2.github.io/">
     <meta property="og:image"
         content="https://og-image.xyz/og/EaglePB2's Website/Welcome to my home, traveller./eaglepb2.github.io/https/atkinson/virtualshapes/{{h}}ffffff/data.png">
     <meta property="og:description" content="如果landing page是一個網頁的家，那我在這裡是不是要說，歡迎來到我家？">
 
-    <!--不來個動圖插圖怎麼行呢awa-->
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-    <link rel="manifest" href="/site.webmanifest">
-    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+    <!-- Favicons (已统一收拢至 assets/favicons/) -->
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/favicons/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/favicons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/favicons/favicon-16x16.png">
+    <link rel="manifest" href="assets/favicons/site.webmanifest">
+    <link rel="mask-icon" href="assets/favicons/safari-pinned-tab.svg" color="#5bbad5">
     <meta name="msapplication-TileColor" content="#9f00a7">
+    <meta name="msapplication-config" content="assets/favicons/browserconfig.xml">
     <meta name="theme-color" content="#ffffff">
-    <link rel="shortcut icon" href="favicon.ico">
-    <link rel="bookmark" href="favicon.ico">
+    <link rel="shortcut icon" href="assets/favicons/favicon.ico">
+    <link rel="bookmark" href="assets/favicons/favicon.ico">
 
-    <!--css一個就好 太多對身體不好-->
+    <!-- Stylesheets -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
     <link rel="stylesheet" type="text/css" href="css/style.css">
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
-    <!--加一個12月才会触发的下雪模式-->
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Snowstorm/20131208/snowstorm-min.js">
-    </script>
+    <!-- 12月才会触发的下雪模式 (已修复 === 11 逻辑) -->
+    <script type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/Snowstorm/20131208/snowstorm-min.js"></script>
     <script>
         snowStorm.useTwinkleEffect = true;
         snowStorm.autoStart = false;
         if (new Date().getMonth() != 11) {
-            snowStorm.toggleSnow(); // Toggle snow on if the current month is December (month index is 11)
-        } else {
+            snowStorm.toggleSnow();
             snowStorm.randomizeWind();
         }
     </script>
-
-    <!--Header 起頭難
-    <div style="text-align:center;clear:both"></div>
-    <div class="tooltips"></div>
-    -->
 </head>
 
 <body>
     <div id="top">
         <main id="top_main">
+            <div id="top_logo">
+                <img id="mainimg" src="assets/img/toplogo.png" alt="Logo" onmouseover="mouseOver()"
+                    onmouseout="mouseOut()">
+            </div>
 
-            <div id="top_logo"><img id="mainimg" src="css/toplogo.png" onmouseover="mouseOver()"
-                    onmouseout="mouseOut()"></div>
-
-            <div id="top_title"><img id="top_title01" alt="但願與你，獨立又親密" src="css/toptitle.png">
+            <div id="top_title">
+                <img id="top_title01" alt="是個奸商，請多指教。" src="assets/img/toptitle.png">
                 <hr class="top_hr_style01">
-                <!--
-                <img id="top_title02" alt="但願與你，獨立又親密" src="style/top_title02.png">
-                -->
             </div>
 
             <ul id="top_navlist">
-                <a class="top_nav" target="_blank" href="/webpages">
-                    <li>> 工具箱</li>
-                </a>
-                <a class="top_nav" target="_blank" href="https://www.twitch.tv/eaglePB2">
-                    <li>> 直播区</li>
-                </a>
-                <a class="top_nav" target="_blank"
-                    href="https://www.youtube.com/@EaglePB2/playlists?view=50&shelf_id=7">
-                    <li>> 档案室</li>
-                </a>
-                <a class="top_nav" target="_blank" href="https://github.com/users/eaglePB2/projects/7">
-                    <li>> 填坑表</li>
-                </a>
+                <li><a class="top_nav" target="_blank" href="/webpages">&gt; 工具箱</a></li>
+                <li><a class="top_nav" target="_blank" href="https://www.twitch.tv/eaglePB2">&gt; 直播区</a></li>
+                <li><a class="top_nav" target="_blank" href="https://www.youtube.com/@EaglePB2/podcasts">&gt; 档案室</a></li>
+                <li><a class="top_nav" target="_blank" href="https://www.igdb.com/users/eaglepb2/lists/lao-ying-tian-keng-biao">&gt; 填坑表</a></li>
+                <li><a class="top_nav" target="_blank" href="https://forestwork.vercel.app">&gt; 林間小鎮</a></li>
             </ul>
         </main>
 
-        <!--轉啊轉啊七彩霓虹燈-->
         <script>
             function mouseOver() {
-                document.getElementById("mainimg").src = "https://picsum.photos/200"; //鼠標懸浮時的旋轉圖標
+                document.getElementById("mainimg").src = "https://picsum.photos/200";
             }
 
             function mouseOut() {
-                document.getElementById('mainimg').src = "css/toplogo.png" //默認的旋轉圖標
+                document.getElementById("mainimg").src = "assets/img/toplogo.png";
             }
         </script>
-
     </div>
 
     <footer id="top_footer">
@@ -106,31 +89,41 @@
             <div id="thought">
                 當你看到這個句子，大概率他故障了030
             </div>
-            <hr class="top_hr_style02">　
-            Copyright © <script>
-                document.write(new Date().getFullYear())
-            </script> - 2077 All Rights Reserved
+            <hr class="top_hr_style02">
+            Copyright ©
+            <script>document.write(new Date().getFullYear())</script> - 2077 All Rights Reserved
         </span>
     </footer>
 
-
-    <!--彩蛋：網頁閒置太久他就會叫-->
+    <!-- 彩蛋与功能脚本 -->
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
     <script type="text/javascript" src="js/timeout.js"></script>
-    <!--換背景-->
     <script type="text/javascript" src="js/backgroundAPI.js"></script>
-    <!--這部分是禁止網頁右鍵-->
     <script type="text/javascript" src="js/norightclick.js"></script>
-    <!--彩蛋：會動的URL-->
     <script type="text/javascript" src="js/moonphases.js"></script>
-    <!--隨機名言-->
     <script type="text/javascript" src="js/quotes.js"></script>
-    <!--彩蛋：鍵盤console.log-->
     <script type="text/javascript" src="js/keyboardASCII.js"></script>
-    <!--這作者說過，一定要放在這裏才能啓動功能 030-->
+    <script type="text/javascript" src="js/glitchtext.js"></script>
+
+    <!-- 启动音效播放（带浏览器拦截容错） -->
+    <script>
+        window.addEventListener('DOMContentLoaded', () => {
+            const audio = new Audio('assets/audio/sound.mp3');
+            audio.volume = 0.5;
+            audio.play().catch(err => {
+                console.log("浏览器拦截了自动播放，等待用户首次交互后触发", err);
+                // 可选：绑定一次任意点击后播放
+                const unlockAudio = () => {
+                    audio.play().catch(() => {});
+                    window.removeEventListener('click', unlockAudio);
+                };
+                window.addEventListener('click', unlockAudio);
+            });
+        });
+    </script>
+
     <script type="text/javascript" color="173,174,173" opacity="1" zindex="-2" count="99"
         src="https://cdnjs.cloudflare.com/ajax/libs/canvas-nest.js/1.0.1/canvas-nest.js"></script>
-    <canvas id="c_n10" width="1359" height="969"
-        style="position: fixed; top: 0px; left: 0px; z-index: -2; opacity: 1;"></canvas>
 </body>
 
 </html>

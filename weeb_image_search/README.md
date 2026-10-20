@@ -1,42 +1,37 @@
+# Weeb Image Search (二次元自訂找圖)
 
-### Hosted by:
-![Google](https://img.shields.io/badge/google-4285F4?style=for-the-badge&logo=google&logoColor=white)
+基於 Google Programmable Search Engine (Google CSE) 的二次元圖片定向檢索工具，過濾通用噪聲網站，專注於 ACG 社群與插圖圖庫。
 
-# Side Project —— 自定义找图网站
-- 就是一个找图网站 没什么秘诀 用就对了。
+- **線上使用**：[https://eaglepb2.github.io/weeb_image_search/](https://eaglepb2.github.io/weeb_image_search/)
+- **引擎核心**：Google CSE (`cx=014419604116388674756:hv4qvcrqxbs`)
 
-# 目前纳入网站链接：
-
-1. https://yande.re/post
- 2. https://www.zerochan.net/
- 3. https://www.wallpapervortex.com/
- 4. https://www.pixivision.net/zh/
- 5. https://www.pixiv.net
- 6. https://www.pinterest.com
- 7. https://www.animecharactersdatabase.com/index.php
- 8. https://saucenao.com/search.php
- 9. http://image.chongbuluo.com
- 10. https://danbooru.donmai.us 
- 11. https://booth.pm
- 12. https://wallup.net/
- 13. http://wallpaperswide.com/
- 14. https://tineye.com
- 15. https://myfigurecollection.net/
- 16. https://konachan.net/
- 17. http://e-shuushuu.net
- 18. https://ascii2d.net
- 19. https://anime-pictures.net/
- 20. https://alphacoders.com/
- 21. https://safebooru.org
- 22. http://behoimi.org
- 23. https://lolibooru.moe
- 24. http://www.minitokyo.net
- 25. https://e-shuushuu.net
- 26. https://www.yuriimg.com
- 27. https://worldcosplay.net
- 28. https://www.artstation.com
- 29. https://wallhaven.cc
- 30. https://rare-gallery.com/
-
-如果还有其他不错的链接的话可以告诉我
-请各位安心食用 寻找你想要的资源 记得别给我当场舔就是了 (O
+### 收錄站點清單
+1. yande.re
+2. zerochan.net
+3. wallpapervortex.com
+4. pixivision.net
+5. pixiv.net
+6. pinterest.com
+7. animecharactersdatabase.com
+8. saucenao.com
+9. image.chongbuluo.com
+10. danbooru.donmai.us
+11. booth.pm
+12. wallup.net
+13. wallpaperswide.com
+14. tineye.com
+15. myfigurecollection.net
+16. konachan.net
+17. e-shuushuu.net
+18. ascii2d.net
+19. anime-pictures.net
+20. alphacoders.com
+21. safebooru.org
+22. behoimi.org
+23. lolibooru.moe
+24. minitokyo.net
+25. yuriimg.com
+26. worldcosplay.net
+27. artstation.com
+28. wallhaven.cc
+29. rare-gallery.com

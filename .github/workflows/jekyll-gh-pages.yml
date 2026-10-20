@@ -4,7 +4,7 @@ name: Static Web
 on:
   # Runs on pushes targeting the default branch (修改这里，匹配你的 master 分支)
   push:
-    branches: ["master"]
+    branches: ["main"]
     paths-ignore:
       - 'README.md'
 

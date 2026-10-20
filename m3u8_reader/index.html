@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="../assets/favicons/favicon-32x32.png">
+    <title>M3U8 播放器 - 鷹的儲藏室</title>
+
+    <!-- 僅保留一個核心解碼庫，其餘所有垃圾全部清除 -->
+    <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            min-height: 100vh;
+            background-color: #121925;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Microsoft YaHei", sans-serif;
+            color: #fff;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 40px 20px;
+            background-image: url('../assets/img/mask.png');
+            background-repeat: repeat;
+        }
+
+        /* 頂部導航 */
+        .header-nav {
+            width: 100%;
+            max-width: 960px;
+            margin-bottom: 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .back-link {
+            color: #00b3ba;
+            text-decoration: none;
+            font-size: 14px;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            transition: color 0.2s;
+        }
+
+        .back-link:hover {
+            color: #fff;
+        }
+
+        /* 主播放器容器（對齊主站毛玻璃微透風格） */
+        .player-card {
+            width: 100%;
+            max-width: 960px;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            padding: 24px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+        }
+
+        .player-title {
+            font-size: 20px;
+            font-weight: 500;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .badge {
+            font-size: 11px;
+            background: rgba(0, 179, 186, 0.2);
+            color: #00b3ba;
+            border: 1px solid #00b3ba;
+            padding: 2px 8px;
+            border-radius: 12px;
+        }
+
+        .player-tip {
+            font-size: 13px;
+            color: #858585;
+            margin-bottom: 20px;
+        }
+
+        /* 輸入控制器組 */
+        .control-group {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .url-input {
+            flex: 1;
+            background: rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 6px;
+            padding: 10px 14px;
+            color: #fff;
+            font-size: 14px;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+
+        .url-input:focus {
+            border-color: #00b3ba;
+        }
+
+        .play-btn {
+            background: #00b3ba;
+            color: #121925;
+            font-weight: 600;
+            border: none;
+            border-radius: 6px;
+            padding: 0 20px;
+            cursor: pointer;
+            transition: background 0.2s, transform 0.1s;
+        }
+
+        .play-btn:hover {
+            background: #00d2da;
+        }
+
+        .play-btn:active {
+            transform: scale(0.98);
+        }
+
+        /* 視頻容器 (原生 16:9 自適應) */
+        .video-wrapper {
+            width: 100%;
+            aspect-ratio: 16 / 9;
+            background: #000;
+            border-radius: 8px;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        video {
+            width: 100%;
+            height: 100%;
+            display: block;
+            object-fit: contain;
+            outline: none;
+        }
+    </style>
+</head>
+
+<body>
+    <header class="header-nav">
+        <a href="../" class="back-link">&larr; 返回首頁</a>
+        <span style="font-size: 13px; color: #858585;">鷹の儲藏室 / 工具箱</span>
+    </header>
+
+    <main class="player-card">
+        <h1 class="player-title">
+            M3U8 線上播放器
+            <span class="badge">HLS Player</span>
+        </h1>
+        <p class="player-tip">輸入 .m3u8 串流位址並點擊播放。部分切片過大的影片請耐心等待加載。</p>
+
+        <div class="control-group">
+            <input type="text" id="url-input" class="url-input" 
+                   value="https://bitdash-a.akamaihd.net/content/sintel/hls/playlist.m3u8"
+                   placeholder="輸入 https://.../playlist.m3u8">
+            <button id="play-btn" class="play-btn">載入播放</button>
+        </div>
+
+        <div class="video-wrapper">
+            <video id="video-element" controls preload="metadata"></video>
+        </div>
+    </main>
+
+    <!-- 原生無依賴邏輯，徹底消滅 jQuery 與無效 MediaSource -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const video = document.getElementById('video-element');
+            const urlInput = document.getElementById('url-input');
+            const playBtn = document.getElementById('play-btn');
+            let hls = null;
+
+            function playStream(url) {
+                const cleanUrl = url.trim();
+                if (!cleanUrl) return;
+
+                if (Hls.isSupported()) {
+                    if (hls) {
+                        hls.destroy();
+                    }
+                    hls = new Hls({
+                        enableWorker: true,
+                        lowLatencyMode: true
+                    });
+                    hls.loadSource(cleanUrl);
+                    hls.attachMedia(video);
+                    hls.on(Hls.Events.MANIFEST_PARSED, () => {
+                        video.play().catch(e => console.log("等待使用者手動點擊播放:", e));
+                    });
+                    hls.on(Hls.Events.ERROR, (event, data) => {
+                        if (data.fatal) {
+                            console.error("HLS 致命錯誤:", data);
+                            switch (data.type) {
+                                case Hls.ErrorTypes.NETWORK_ERROR:
+                                    hls.startLoad();
+                                    break;
+                                case Hls.ErrorTypes.MEDIA_ERROR:
+                                    hls.recoverMediaError();
+                                    break;
+                                default:
+                                    hls.destroy();
+                                    break;
+                            }
+                        }
+                    });
+                } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
+                    // 原生支援 HLS (如 Safari / iOS)
+                    video.src = cleanUrl;
+                    video.addEventListener('loadedmetadata', () => {
+                        video.play().catch(e => console.log("等待使用者手動點擊播放:", e));
+                    });
+                } else {
+                    alert('您的瀏覽器不支援 HLS 播放！');
+                }
+            }
+
+            playBtn.addEventListener('click', () => {
+                playStream(urlInput.value);
+            });
+
+            // 支援 Enter 鍵直接載入
+            urlInput.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter') {
+                    playStream(urlInput.value);
+                }
+            });
+
+            // 初始載入預設影片
+            playStream(urlInput.value);
+        });
+    </script>
+</body>
+
+</html>

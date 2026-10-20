@@ -53,7 +53,7 @@ export const projectsData = [
         desc: "二次元自定义找图网站",
         badge: null,
         img: "https://cdn.wallpapersafari.com/13/78/HsLNCo.jpg",
-        url: "https://cse.google.com/cse?cx=014419604116388674756:hv4qvcrqxbs#gsc.tab=0"
+        url: "/weeb_image_search/"
     },
     {
         title: "Quotes",

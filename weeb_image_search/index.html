@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="../assets/favicons/favicon-32x32.png">
+    <title>二次元自訂找圖 - 鷹的儲藏室</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            min-height: 100vh;
+            background-color: #121925;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Microsoft YaHei", sans-serif;
+            color: #fff;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 40px 20px;
+            background-image: url('../assets/img/mask.png');
+            background-repeat: repeat;
+        }
+
+        .header-nav {
+            width: 100%;
+            max-width: 960px;
+            margin-bottom: 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .back-link {
+            color: #00b3ba;
+            text-decoration: none;
+            font-size: 14px;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            transition: color 0.2s;
+        }
+
+        .back-link:hover {
+            color: #fff;
+        }
+
+        /* 資訊與說明面板 (你要求的 info region) */
+        .info-card {
+            width: 100%;
+            max-width: 960px;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            padding: 24px;
+            backdrop-filter: blur(10px);
+            margin-bottom: 24px;
+        }
+
+        .tool-title {
+            font-size: 20px;
+            font-weight: 500;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .badge {
+            font-size: 11px;
+            background: rgba(0, 179, 186, 0.2);
+            color: #00b3ba;
+            border: 1px solid #00b3ba;
+            padding: 2px 8px;
+            border-radius: 12px;
+        }
+
+        .info-content {
+            font-size: 13px;
+            color: #aaa;
+            line-height: 1.6;
+        }
+
+        .info-content ul {
+            margin-top: 8px;
+            padding-left: 20px;
+        }
+
+        /* Google CSE 搜尋容器 */
+        .search-container {
+            width: 100%;
+            max-width: 960px;
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 12px;
+            padding: 20px;
+            min-height: 400px;
+        }
+    </style>
+
+    <!-- Google CSE 官方異步腳本 -->
+    <script async src="https://cse.google.com/cse.js?cx=014419604116388674756:hv4qvcrqxbs"></script>
+</head>
+
+<body>
+    <header class="header-nav">
+        <a href="../" class="back-link">&larr; 返回首頁</a>
+        <span style="font-size: 13px; color: #858585;">鷹の儲藏室 / 工具箱</span>
+    </header>
+
+    <!-- 自訂資訊區域 (Info Region) -->
+    <section class="info-card">
+        <h1 class="tool-title">
+            Weeb Image Search
+            <span class="badge">Google CSE</span>
+        </h1>
+        <div class="info-content">
+            <p>這是一個基於 Google 自訂搜尋引擎打造的專用圖片檢索工具，過濾了大量無關的噪聲網站，聚焦於ACG與動漫圖片社群。</p>
+            <ul>
+                <li><strong>使用建議</strong>：輸入角色名稱、作品原作名或繪師羅馬音 ID 效果最佳。</li>
+                <li><strong>說明</strong>：搜尋結果由 Google Programmable Search 即時檢索並提供。</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- 搜尋框與結果渲染容器 -->
+    <main class="search-container">
+        <div class="gcse-search"></div>
+    </main>
+</body>
+
+</html>

@@ -265,3 +265,49 @@ body.show-toolbox #toolbox-view {
     visibility: visible;
     pointer-events: auto;
 }
+
+/* 浮动方块背景容器：强制置底、隐藏溢出、彻底禁用鼠标事件 */
+.cube-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    z-index: 0;
+    pointer-events: none; /* 铁律：绝对禁止拦截用户的任何点击 */
+}
+
+.cube-bg li {
+    position: absolute;
+    display: block;
+    list-style: none;
+    width: 20px;
+    height: 20px;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    bottom: -160px;
+    will-change: transform, opacity;
+    animation: cubeFloat 12s linear infinite;
+}
+
+/* 错开位置、尺寸与延迟 */
+.cube-bg li:nth-child(1) { left: 10%; width: 40px; height: 40px; animation-duration: 10s; }
+.cube-bg li:nth-child(2) { left: 25%; width: 20px; height: 20px; animation-duration: 14s; animation-delay: 2s; }
+.cube-bg li:nth-child(3) { left: 45%; width: 60px; height: 60px; animation-duration: 16s; animation-delay: 1s; }
+.cube-bg li:nth-child(4) { left: 65%; width: 30px; height: 30px; animation-duration: 11s; animation-delay: 4s; }
+.cube-bg li:nth-child(5) { left: 80%; width: 50px; height: 50px; animation-duration: 15s; animation-delay: 3s; }
+.cube-bg li:nth-child(6) { left: 90%; width: 25px; height: 25px; animation-duration: 13s; animation-delay: 6s; }
+
+@keyframes cubeFloat {
+    0% {
+        transform: translateY(0) rotate(0deg);
+        opacity: 0.8;
+        border-radius: 4px;
+    }
+    100% {
+        transform: translateY(-1200px) rotate(720deg);
+        opacity: 0;
+        border-radius: 50%;
+    }
+}

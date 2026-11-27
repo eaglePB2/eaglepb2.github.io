@@ -1,0 +1,8 @@
+node_modules/
+test-results/
+playwright-report/
+.obsidian/
+tests/
+playwright.config.ts
+package.json
+package-lock.json

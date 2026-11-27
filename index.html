@@ -37,16 +37,12 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
     <link rel="stylesheet" type="text/css" href="css/style.css">
 
-    <!-- 12月才会触发的下雪模式 (已修复 === 11 逻辑) -->
+    <!-- 仅在12月下雪；其他月份通过设置 disabled 关闭（库的 start() 在 disabled 时会跳过；在 <head> 中调用 autoStart/toggleSnow 会报错，因为 <body> 尚未存在） -->
     <script type="text/javascript"
         src="https://cdnjs.cloudflare.com/ajax/libs/Snowstorm/20131208/snowstorm-min.js"></script>
     <script>
         snowStorm.useTwinkleEffect = true;
-        snowStorm.autoStart = false;
-        if (new Date().getMonth() != 11) {
-            snowStorm.toggleSnow();
-            snowStorm.randomizeWind();
-        }
+        if (new Date().getMonth() !== 11) snowStorm.disabled = true;
     </script>
 </head>
 
